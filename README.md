@@ -81,6 +81,7 @@ request.body //{username:'test', password: 'password'}
 
 目前支持的 prefix 有：
 
+* endpoint
 * params
 * qs
 * headers
@@ -103,7 +104,9 @@ const customClient = {
             options.qs
          */
         
-        return /* promise */
+        //full response eg {body: {}, header: {}, status: 200}
+        //if you return a body object, the @ResponseBody and @ResponseHeader will be unused.
+        return response;
     }
 }
 

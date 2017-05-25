@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -33,6 +33,11 @@ function mergeParams(paramTypeAndKeys, params) {
         const value = params[i];
         if (value === undefined) {
             continue;
+        }
+
+        if (type === 'endpoint') {
+            //TODO valid url.
+            request.url = value + (request.url || '');
         }
 
         if (!key) {

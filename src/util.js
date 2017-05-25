@@ -27,6 +27,11 @@ export function mergeParams(paramTypeAndKeys, params) {
             continue;
         }
 
+        if (type === 'endpoint') {
+            //TODO valid url.
+            request.url = (value + (request.url || ''));
+        }
+
         if (!key) {
             request[type] = params[i];
         } else {
