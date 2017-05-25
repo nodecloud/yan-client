@@ -87,6 +87,14 @@ request.body //{username:'test', password: 'password'}
 * headers
 * body
 
+### @ResponseBody
+
+如果有这个装饰器，返回的结果就是 response 对象的 body。如果自定义 client 没有返回 body，最后仍然会返回 response。
+
+### @ResponseHeader
+
+如果有这个装饰器，返回的是 response 对象的 header。如果自定义 client 没有返回 header，最后仍然会返回 response。
+
 ### @YanClient(client)
 
 这个装饰器必须位于所有的装饰器之后，用来最终发送 http 请求，如果不想使用 默认的 request 库来发送请求，

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Header = exports.Params = exports.DeleteMapping = exports.PutMapping = exports.PostMapping = exports.GetMapping = undefined;
+exports.ResponseHeader = exports.ResponseBody = exports.Header = exports.Params = exports.DeleteMapping = exports.PutMapping = exports.PostMapping = exports.GetMapping = undefined;
 
 var _YanClient = require('./annotation/YanClient');
 
@@ -33,6 +33,14 @@ var _Header = require('./annotation/Header');
 
 var _Header2 = _interopRequireDefault(_Header);
 
+var _ResponseBody = require('./annotation/ResponseBody');
+
+var _ResponseBody2 = _interopRequireDefault(_ResponseBody);
+
+var _ResponseHeader = require('./annotation/ResponseHeader');
+
+var _ResponseHeader2 = _interopRequireDefault(_ResponseHeader);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _YanClient2.default;
@@ -42,3 +50,5 @@ exports.PutMapping = _PutMapping2.default;
 exports.DeleteMapping = _DeleteMapping2.default;
 exports.Params = _Params2.default;
 exports.Header = _Header2.default;
+exports.ResponseBody = _ResponseBody2.default;
+exports.ResponseHeader = _ResponseHeader2.default;

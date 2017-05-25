@@ -5,6 +5,8 @@ import PutMapping from './annotation/PutMapping';
 import DeleteMapping from './annotation/DeleteMapping';
 import Params from './annotation/Params';
 import Header from './annotation/Header';
+import ResponseBody from './annotation/ResponseBody';
+import ResponseHeader from './annotation/ResponseHeader';
 
 export default YanClient;
-export {GetMapping, PostMapping, PutMapping, DeleteMapping, Params, Header};
+export {GetMapping, PostMapping, PutMapping, DeleteMapping, Params, Header, ResponseBody, ResponseHeader};
