@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export function getRequest(params) {
     let request = {_YAN_CLIENT: true, params: {}, headers: {}, qs: {}, body: {}};
     if (params[0] && params[0]._YAN_CLIENT) {
@@ -33,9 +35,9 @@ export function mergeParams(paramTypeAndKeys, params) {
         }
 
         if (!key) {
-            request[type] = params[i];
+            _.set(request, type, params[i]);
         } else {
-            request[type][key] = params[i];
+            _.set(request, `${type}.${key}`, params[i]);
         }
     }
 
