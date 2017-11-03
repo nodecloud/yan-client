@@ -6,6 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.getRequest = getRequest;
 exports.newArgs = newArgs;
 exports.mergeParams = mergeParams;
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function getRequest(params) {
     let request = { _YAN_CLIENT: true, params: {}, headers: {}, qs: {}, body: {} };
     if (params[0] && params[0]._YAN_CLIENT) {
@@ -27,7 +34,7 @@ function mergeParams(paramTypeAndKeys, params) {
     let request = getRequest(params);
     for (let i = 0; i < paramTypeAndKeys.length; i++) {
         //TODO valid paramAndType.
-        const typeAndKey = paramTypeAndKeys[i].split(":");
+        const typeAndKey = paramTypeAndKeys[i].trim().split(":");
         const type = typeAndKey[0];
         const key = typeAndKey[1];
         const value = params[i];
@@ -41,9 +48,9 @@ function mergeParams(paramTypeAndKeys, params) {
         }
 
         if (!key) {
-            request[type] = params[i];
+            _lodash2.default.set(request, type, params[i]);
         } else {
-            request[type][key] = params[i];
+            _lodash2.default.set(request, `${type}.${key}`, params[i]);
         }
     }
 

@@ -37,47 +37,39 @@ export default new class UserClient {
 
 ## 文档
 
+### @RequestMapping(method, url)
+
 ### @***Mapping(url)
 
-这个装饰器用来设置请求的 URL。
+用来设置请求的 URL。
 
 ### @Header(key, value)
 
-这个装饰器用来设置请求的 header。
+用来设置请求的 header。
 
 ### @Params(...params)
 
-这个装饰器用来确定函数的参数和请求的参数的映射关系，每个参数和函数的参数按照顺序一一对应；
+用来确定函数的参数和请求的参数的映射关系，每个参数和函数的参数按照顺序一一对应；
 其中每个参数都是由 [prefix]:[postfix] 这样的表达式组成，postfix 可以为空，
-当 postfix 为空的时候，对应的参数必须为对象，因为当只有 prefix 的时候，对应的参数会完全替换请求参数。例如：
+当 postfix 为空的时候，会替换 request 对象上某个属性。例如：
 
 ```javascript
 class Test {
     @Params("body")
-    test(user) {} // user: {username: 'test', password: 'password'}
+    addUser(user) {} // body: {user: {username: 'test', password: 'password'}}
 }
 ```
 
-最终生成的 request 对象如下：
-
-```javascript
-request.body //{username: 'test', password: 'password'}
-```
-
-如果参数是字符串或者数字，那么就不能完全替换，可以加上 postfix 来替换某个属性。例如：
+当 postfix 不为空的时候会替换 request 对象某个属性的具体值，
+postfix 支持按照路径的方式比如 (body:user.username)。例如：
 
 ```javascript
 class Test {
-    @Params("body:username", "body:password")
-    test(username, password) {} // username: 'test', password: 'password'
+    @Params("params:userId", "body:user.enable")
+    updateUser(userId, enable) {} // body: {user: {enable: ""}}
 }
 ```
 
-最终生成的 request 对象如下：
-
-```javascript
-request.body //{username:'test', password: 'password'}
-```
 
 目前支持的 prefix 有：
 
@@ -97,7 +89,7 @@ request.body //{username:'test', password: 'password'}
 
 ### @YanClient(client)
 
-这个装饰器必须位于所有的装饰器之后，用来最终发送 http 请求，如果不想使用 默认的 request 库来发送请求，
+必须位于所有的装饰器之后，用来最终发送 http 请求，如果不想使用 默认的 request 库来发送请求，
 可以通过 client 参数来进行自定义。
 
 ```javascript

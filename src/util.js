@@ -21,7 +21,7 @@ export function mergeParams(paramTypeAndKeys, params) {
     let request = getRequest(params);
     for (let i = 0; i < paramTypeAndKeys.length; i++) {
         //TODO valid paramAndType.
-        const typeAndKey = paramTypeAndKeys[i].split(":");
+        const typeAndKey = paramTypeAndKeys[i].trim().split(":");
         const type = typeAndKey[0];
         const key = typeAndKey[1];
         const value = params[i];
