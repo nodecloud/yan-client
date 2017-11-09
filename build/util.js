@@ -14,7 +14,7 @@ var _lodash2 = _interopRequireDefault(_lodash);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getRequest(params) {
-    let request = { _YAN_CLIENT: true, params: {}, headers: {}, qs: {}, body: {} };
+    let request = { _YAN_CLIENT: true };
     if (params[0] && params[0]._YAN_CLIENT) {
         request = params[0];
         params.shift();
