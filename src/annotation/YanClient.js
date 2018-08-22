@@ -13,7 +13,13 @@ export default function (client, options) {
             delete params[0]._YAN_CLIENT_RESPONSE_BODY;
             delete params[0]._YAN_CLIENT_RESPONSE_HEADER;
 
-            const response = await (client && client.send ? client.send(params[0]) : defaultClient.send(params[0]));
+            let response;
+            try {
+                response = await (client && client.send ? client.send(params[0]) : defaultClient.send(params[0]));
+            } catch (e) {
+                return {body: {message: e.message}};
+            }
+
 
             if (!response) {
                 throw new Error("The http client was no response, please check it");
